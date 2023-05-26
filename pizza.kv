@@ -1,4 +1,7 @@
 #: import utils kivy.utils
+#: set color1 "#DD7835"
+#: set color2 "#C8C8C8"
+
 MainWidget:
 
 <MainWidget>:
@@ -7,11 +10,12 @@ MainWidget:
         viewclass: 'PizzaWidget'
         id: rv
         RecycleBoxLayout:
-            default_size: None, dp(100)
+            default_size: None, dp(56)
             default_size_hint: 1, None
             size_hint_y: None
             height: self.minimum_height
             orientation: 'vertical'
+            spacing: dp(16)
 
 <LeftAlignLabel@Label>:
     text_size: self.size
@@ -19,7 +23,8 @@ MainWidget:
     valign: "center"
     canvas.before:
         Color:
-            rgb: utils.get_random_color()
+            # rgb: utils.get_random_color()
+            rgba: 0, 0, 0, 0 
         Rectangle:
             pos: self.pos
             size: self.size
@@ -48,13 +53,18 @@ MainWidget:
             spacing: dp(10)
             FitLabel:
                 text: root.name
-               
+                font_size: dp(22)
+                bold: True
             Badge:
                 text: "VEGETARIAN" if root.vegetarian else ""
         LeftAlignLabel:
             text: root.ingredients
-    Label:
+            color: utils.get_color_from_hex(color2)
+    FitLabel:
         text: str(root.price) + "$"
-        text_size: self.size
-        halign: "right"
-        valign: "center"
+        #text_size: self.size
+        # halign: "right"
+        #valign: "center"
+        font_size: dp(20)
+        color: utils.get_color_from_hex(color1)
+     
