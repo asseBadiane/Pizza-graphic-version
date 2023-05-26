@@ -3,25 +3,49 @@
 #: set color2 "#C8C8C8"
 
 MainWidget:
-
+<ddd>:
+   
+    TitleLabel:
+        text: "Les Pizas"
 
 <CoverImage@CoverBehavior+Image>:
     reference_size: self.texture_size
 
 <MainWidget>:
     recycleView: rv
+    
     CoverImage:
         source: "images/menu_background.jpg"
-    RecycleView:
-        viewclass: 'PizzaWidget'
-        id: rv
-        RecycleBoxLayout:
-            default_size: None, dp(56)
-            default_size_hint: 1, None
-            size_hint_y: None
-            height: self.minimum_height
-            orientation: 'vertical'
-            spacing: dp(16)
+        canvas:
+            Color:
+                rgba: 0, 0, 0, .6
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        Image:
+            source: "images/small_logo.png"
+            size_hint: None, None
+            size: dp(150), dp(68)
+            allow_stretch: True
+            pos_hint: {"center_x": .5}
+        TitleLabel:
+            text: "Les pizzas"
+          
+
+        BoxLayout:
+            padding: dp(22)
+            RecycleView:
+                viewclass: 'PizzaWidget'
+                id: rv
+                RecycleBoxLayout:
+                    default_size: None, dp(56)
+                    default_size_hint: 1, None
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: 'vertical'
+                    spacing: dp(16)
 
 <LeftAlignLabel@Label>:
     text_size: self.size
@@ -50,10 +74,25 @@ MainWidget:
             pos: self.pos
             size: self.size
 
+<TitleLabel@FitLabel>:
+    font_size: dp(22)
+    bold: True
+    padding: dp(16), dp(3)
+    canvas.before:
+        Color:
+            rgb: utils.get_color_from_hex(color1)
+            #rgba: 0, 0, 0, 0 
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
 
 <PizzaWidget>:
+
     spacing: dp(10)
     BoxLayout:
+        size_hint_max_x: dp(300)
+        size_hint_min_x: dp(150)
         orientation: "vertical"
         BoxLayout:
             spacing: dp(10)
@@ -73,4 +112,4 @@ MainWidget:
         #valign: "center"
         font_size: dp(20)
         color: utils.get_color_from_hex(color1)
-     
+        pos_hint: {"top": .9}
