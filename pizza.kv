@@ -4,8 +4,14 @@
 
 MainWidget:
 
+
+<CoverImage@CoverBehavior+Image>:
+    reference_size: self.texture_size
+
 <MainWidget>:
     recycleView: rv
+    CoverImage:
+        source: "images/menu_background.jpg"
     RecycleView:
         viewclass: 'PizzaWidget'
         id: rv
