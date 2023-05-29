@@ -5,7 +5,7 @@ from kivy.properties import StringProperty, NumericProperty, BooleanProperty, Ob
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.behaviors import CoverBehavior
 from http_client import HttpClient
-
+from storage_manager import StorageManager
 class PizzaWidget(BoxLayout):
     name = StringProperty()
     ingredients = StringProperty()
@@ -35,6 +35,8 @@ class MainWidget(FloatLayout):
 
     def on_server_data(self, pizza):
         self.recycleView.data = pizza
+        if StorageManager.load_data:
+            StorageManager().save_data("pizzas", pizza)
 
     def on_server_error(self, error):
         print(f"Erreur: {error}")
