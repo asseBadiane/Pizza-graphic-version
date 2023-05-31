@@ -4,12 +4,12 @@ class StorageManager:
     def load_data(self, data_name):
         fileName = self.get_fileName(data_name)
         try:
-            file =open(fileName, "r")
-            file.read()
+            file = open(fileName, "r")
+            data = file.read()
             file.close()
         except:
             return None
-        return json.loads(file) # Ici on désarialize nos données
+        return json.loads(data) # Ici on désarialize nos données
 
     def save_data(self, data_name, data_content):
         fileName = self.get_fileName(data_name)

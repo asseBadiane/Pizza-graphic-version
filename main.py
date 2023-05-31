@@ -6,8 +6,9 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.behaviors import CoverBehavior
 from http_client import HttpClient
 from storage_manager import StorageManager
+
 class PizzaWidget(BoxLayout):
-    name = StringProperty()
+    nom = StringProperty()
     ingredients = StringProperty()
     prix = NumericProperty()
     vegetarian = BooleanProperty()
@@ -30,8 +31,11 @@ class MainWidget(FloatLayout):
 
         HttpClient().get_pizzas(self.on_server_data, self.on_server_error, self.on_server_failure)
 
-    # def on_parent(self, widget, parent):
+    def on_parent(self, widget, parent):
     #     self.recycleView.data = [pizza.get_dictionnary_pizzas() for pizza in self.pizzas]
+        pizzas_dict = StorageManager().load_data("pizzas")
+        if pizzas_dict:
+            self.recycleView.data = pizzas_dict
 
     def on_server_data(self, pizza):
         self.recycleView.data = pizza

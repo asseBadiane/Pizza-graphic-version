@@ -1,17 +1,17 @@
 
 
 class Pizza:
-    name = ""
+    nom = ""
     ingredients = ""
     prix = 0
     vegetarian = False
 
-    def __init__(self, name, ingredients, prix, vegetarian):
-        self.name = name
+    def __init__(self, nom, ingredients, prix, vegetarian):
+        self.nom = nom
         self.ingredients = ingredients
         self.prix = prix
         self.vegetarian = vegetarian
 
     def get_dictionnary_pizzas(self):
-        return {"name": self.name, "ingredients": self.ingredients, "prix": self.prix, "vegetarian": self.vegetarian}
+        return {"nom": self.nom, "ingredients": self.ingredients, "prix": self.prix, "vegetarian": self.vegetarian}
         
