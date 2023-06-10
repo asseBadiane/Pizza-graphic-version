@@ -43,12 +43,14 @@ class MainWidget(FloatLayout):
             StorageManager().save_data("pizzas", pizza)
 
     def on_server_error(self, error):
-        print(f"Erreur: {error}")
-        self.error_str = "Erreur: " + error
+        # print(f"Erreur: {error}")
+        if len(self.recycleView.data) < 1:
+            self.error_str = "Erreur: " + error
 
     def on_server_failure(self, failure):
-        print(f"Failure: {failure}")
-        self.error_str = "Erreur... " + failure
+        # print(f"Failure: {failure}")
+        if len(self.recycleView.data) < 1:
+            self.error_str = "Erreur... " + failure
 
 class PizzaApp(App):
     pass
